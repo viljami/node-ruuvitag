@@ -1,6 +1,6 @@
-const EventEmitter = require('events').EventEmitter;
-const parser = require('./lib/parse');
-const parseEddystoneBeacon = require('./lib/eddystone');
+import { EventEmitter } from 'events';
+import parse from './lib/parse';
+import parseEddystoneBeacon from './lib/eddystone';
 
 class RuuviTag extends EventEmitter {
   constructor (data) {

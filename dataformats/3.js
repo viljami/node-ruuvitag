@@ -64,6 +64,6 @@ const parseRawRuuvi = function(manufacturerDataString) {
   return robject;
 };
 
-module.exports = {
+export default {
   parse: buffer => parseRawRuuvi(buffer.toString("hex")),
 };

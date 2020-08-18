@@ -38,7 +38,7 @@ const parseRawRuuvi = function (data) {
   return robject;
 };
 
-module.exports = {
+export default {
   parse: buffer => parseRawRuuvi(buffer)
 };
 

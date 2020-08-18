@@ -1,20 +1,23 @@
 # node-ruuvitag
-Node.js module for reading data from a [Ruuvitag](http://tag.ruuvi.com)
+React Native module for reading data from a [Ruuvitag](http://tag.ruuvi.com)
 weather station.
 
-Tested on Raspberry Pi 3. Depends on [noble](https://github.com/abandonware/noble). See [instructions](https://github.com/abandonware/noble) on
- how to enable BLE on RasPi and how to run without root.
+Tested on iOS.
+
+Original repository: https://github.com/pakastin/node-ruuvitag
 
 ### Installation
 
-```
-npm install node-ruuvitag
-```
+I have not set up npm package yet. Installation via adding the github repository to your node project.
 
+```bash
+npm install git@github.com:viljami/node-ruuvitag.git
+```
 
 ### Usage example
+
 ```js
-const ruuvi = require('node-ruuvitag');
+import ruuvi from 'node-ruuvitag';
 
 ruuvi.on('found', tag => {
   console.log('Found RuuviTag, id: ' + tag.id);
@@ -27,7 +30,6 @@ ruuvi.on('found', tag => {
 ruuvi.on('warning', message => {
   console.error(new Error(message));
 });
-
 ```
 
 ### Events
@@ -82,6 +84,3 @@ following properties (depending on data format):
 
 See [data formats](https://github.com/ruuvi/ruuvi-sensor-protocols) for
 info about RuuviTag sensor values.
-
-
-

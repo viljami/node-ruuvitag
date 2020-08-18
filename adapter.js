@@ -1,48 +1,72 @@
-const noble = require('@abandonware/noble');
-const EventEmitter = require('events').EventEmitter;
+import { EventEmitter } from "events";
+import { BleManager, State } from 'react-native-ble-plx';
 
-class Adapter extends EventEmitter {
-  constructor () {
+class RuuviAdapter extends EventEmitter {
+  manager = null;
+  isScanning = false;
+
+  constructor() {
     super();
 
-    noble.on('discover', (peripheral) => {
-      this.emit('discover', peripheral);
-    });
+    this.manager = new BleManager();
 
-    noble.on('warning', (warning) => {
-      this.emit('warning', warning);
-    });
-
-    // start scanning
-    if (noble.state === 'poweredOn') {
-      this.start();
-    } else {
-      noble.once('stateChange', (state) => {
-        if (state === 'poweredOn') {
+    this.manager
+      .state()
+      .then((state) => {
+        if (state === State.PoweredOn) {
           this.start();
         } else {
-          this.stop();
+          this.manager.onStateChange((state) => {
+            if (state === State.PoweredOn) {
+              this.start();
+            } else {
+              this.stop();
+            }
+
+            this.emit("stateChange", state);
+          });
         }
-        this.emit('stateChange', state);
       });
-    }
   }
 
-  start () {
-    if (this._scanning) {
+  start() {
+    if (this.isScanning) {
       return;
     }
-    this._scanning = true;
-    noble.startScanning([], true);
+
+    this.isScanning = true;
+    this.scanAndConnect();
   }
 
-  stop () {
-    if (!this._scanning) {
+  stop() {
+    if (!this.isScanning) {
       return;
     }
-    this._scanning = false;
-    noble.stopScanning();
+
+    this.manager.stopDeviceScan();
+    this.isScanning = false;
+  }
+
+  scanAndConnect() {
+    this.info("Scanning...");
+
+    this.manager.startDeviceScan(null, null, (error, device) => {
+      if (error) {
+        this.warning(error.message);
+        return;
+      }
+
+      this.emit('discover', device);
+    });
+  }
+
+  info(message) {
+    this.emit('info', { info: message });
+  }
+
+  warning(message) {
+    this.emit('warning', { info: "ERROR: " + message });
   }
 }
 
-module.exports = new Adapter();
+export default new RuuviAdapter();

@@ -1,4 +1,4 @@
-const adapter = require('./adapter.js');
-const Ruuvi = require('./ruuvi.js');
+import adapter from './adapter-ios.js';
+import Ruuvi from './ruuvi.js';
 
-module.exports = new Ruuvi(adapter);
+export default new Ruuvi(adapter);
