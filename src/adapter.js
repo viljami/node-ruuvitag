@@ -68,5 +68,3 @@ export default class RuuviAdapter extends EventEmitter {
     this.emit('warning', { info: "ERROR: " + message });
   }
 }
-
-export default new RuuviAdapter();
