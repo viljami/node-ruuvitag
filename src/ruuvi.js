@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import EventEmitter from 'events';
 import parser from './lib/parse';
 import parseEddystoneBeacon from './lib/eddystone';
 

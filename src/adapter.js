@@ -1,6 +1,6 @@
-import { EventEmitter } from "events";
+import EventEmitter from "events";
 
-class RuuviAdapter extends EventEmitter {
+export default class RuuviAdapter extends EventEmitter {
   manager = null;
   isScanning = false;
 
