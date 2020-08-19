@@ -17,7 +17,10 @@ npm install git@github.com:viljami/node-ruuvitag.git
 ### Usage example
 
 ```js
-import ruuvi from 'node-ruuvitag';
+import createRuuvi from 'node-ruuvitag';
+import { BleManager, State } from "react-native-ble-plx";
+
+const ruuvi = createRuuvi(new BleManager(), State);
 
 ruuvi.on('found', tag => {
   console.log('Found RuuviTag, id: ' + tag.id);
