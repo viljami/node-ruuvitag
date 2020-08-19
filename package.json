@@ -4,7 +4,7 @@
   "engines": {
     "node": ">6.0.0"
   },
-  "repository": "https://github.com/pakastin/node-ruuvitag",
+  "repository": "https://github.com/viljami/node-ruuvitag",
   "description": "Read data from RuuviTag weather station",
   "main": "index.js",
   "scripts": {
