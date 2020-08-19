@@ -1,23 +1,23 @@
 import { EventEmitter } from "events";
-import { BleManager, State } from 'react-native-ble-plx';
 
 class RuuviAdapter extends EventEmitter {
   manager = null;
   isScanning = false;
 
-  constructor() {
+  constructor(manager, State) {
     super();
 
-    this.manager = new BleManager();
+    this.State = State;
+    this.manager = manager;
 
     this.manager
       .state()
       .then((state) => {
-        if (state === State.PoweredOn) {
+        if (state === this.State.PoweredOn) {
           this.start();
         } else {
           this.manager.onStateChange((state) => {
-            if (state === State.PoweredOn) {
+            if (state === this.State.PoweredOn) {
               this.start();
             } else {
               this.stop();

@@ -1,4 +1,4 @@
-import adapter from './adapter';
-import Ruuvi from './ruuvi';
+import adapter from './src/adapter';
+import Ruuvi from './src/ruuvi';
 
 export default new Ruuvi(adapter);

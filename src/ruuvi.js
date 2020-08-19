@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import parse from './lib/parse';
+import parser from './lib/parse';
 import parseEddystoneBeacon from './lib/eddystone';
 
 class RuuviTag extends EventEmitter {

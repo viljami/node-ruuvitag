@@ -1,4 +1,4 @@
-const dataFormats = require("../dataformats/index");
+import dataFormats from "../dataformats/index";
 
 function stripUrl(url) {
   const match = url.match(/#(.+)$/);

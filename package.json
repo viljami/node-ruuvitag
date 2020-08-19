@@ -22,8 +22,6 @@
     "sinon": "^9.0.2"
   },
   "dependencies": {
-    "@abandonware/noble": "^1.9.2-9",
-    "react-native-ble-plx": "^2.0.1"
   },
   "prettier": {
     "printWidth": 120,
